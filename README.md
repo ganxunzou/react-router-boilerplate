@@ -21,7 +21,3 @@ React16 + Babel(ES6) + Webpack3 集成开发环境模板工程。内部使用rea
 ```
     npm run build
 ```
-
-=======
-# react-router-boilerplate
-react-router-boilerplate
