@@ -47,6 +47,8 @@
     "no-restricted-syntax": "off",
     "linebreak-style":"off",
     "object-curly-newline":"off",
-    "guard-for-in":"off"
+    "guard-for-in":"off",
+    "no-tabs":"off",
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }
