@@ -1,33 +1,64 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './views/header';
-import Body from './views/body';
-import Footer from './views/footer';
+// import Header from './views/header';
+// import Body from './views/body';
+// import Footer from './views/footer';
 import style from './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Comp: null,
+    };
+  }
+  dynamicImport(type) {
+		import(`./views/${type}`).then((Comp) => {
+		  this.setState({ Comp });
+		});
+  }
+
   render() {
+    const { Comp } = this.state;
     return (
 			<div className={style.main}>
 				<Router>
 					<div>
 						<ul>
 							<li>
-								<Link to="/">Home</Link>
+								<button
+  onClick={() => {
+										this.dynamicImport('header');
+									}}
+								>
+									header
+								</button>
 							</li>
 							<li>
-								<Link to="/about">About</Link>
+								<button
+  onClick={() => {
+										this.dynamicImport('body');
+									}}
+								>
+									Body
+								</button>
 							</li>
 							<li>
-								<Link to="/topics">Topics</Link>
+								<button
+  onClick={() => {
+										this.dynamicImport('footer');
+									}}
+								>
+									Footer
+								</button>
 							</li>
 						</ul>
 						<hr />
-
-						<Route exact path="/" component={Header} />
+						{Comp && <Comp.default />}
+						{/* <Route exact path="/" component={Header} />
 						<Route path="/about" component={Body} />
-						<Route path="/topics" component={Footer} />
+						<Route path="/topics" component={Footer} /> */}
 					</div>
 				</Router>
 			</div>
