@@ -14,54 +14,55 @@ class App extends Component {
     };
   }
   dynamicImport(type) {
-		import(`./views/${type}`).then((Comp) => {
-		  this.setState({ Comp });
-		});
+    console.log(type);
+    import(`./views/${type}` /* webpackChunkName: "xxx" */).then((Comp) => {
+      this.setState({ Comp });
+    });
   }
 
   render() {
     const { Comp } = this.state;
     return (
-			<div className={style.main}>
-				<Router>
-					<div>
-						<ul>
-							<li>
-								<button
-  onClick={() => {
-										this.dynamicImport('header');
-									}}
-								>
-									header
-								</button>
-							</li>
-							<li>
-								<button
-  onClick={() => {
-										this.dynamicImport('body');
-									}}
-								>
-									Body
-								</button>
-							</li>
-							<li>
-								<button
-  onClick={() => {
-										this.dynamicImport('footer');
-									}}
-								>
-									Footer
-								</button>
-							</li>
-						</ul>
-						<hr />
-						{Comp && <Comp.default />}
-						{/* <Route exact path="/" component={Header} />
+      <div className={style.main}>
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <button
+                  onClick={() => {
+                    this.dynamicImport('header');
+                  }}
+                >
+                  header
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    this.dynamicImport('body');
+                  }}
+                >
+                  Body
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    this.dynamicImport('footer');
+                  }}
+                >
+                  Footer
+                </button>
+              </li>
+            </ul>
+            <hr />
+            {Comp && <Comp.default />}
+            {/* <Route exact path="/" component={Header} />
 						<Route path="/about" component={Body} />
 						<Route path="/topics" component={Footer} /> */}
-					</div>
-				</Router>
-			</div>
+          </div>
+        </Router>
+      </div>
     );
   }
 }
